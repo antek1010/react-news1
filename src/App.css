@@ -36,3 +36,77 @@
     transform: rotate(360deg);
   }
 }
+body {
+  margin: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at center, #050510 0%, #000 70%);
+  overflow: hidden;
+}
+
+h1 {
+  position: relative;
+  font-size: clamp(3rem, 9vw, 9rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  transform-style: preserve-3d;
+
+  background: linear-gradient(
+    90deg,
+    #ff00ff,
+    #00ffff,
+    #00ff00,
+    #ffff00,
+    #ff0000,
+    #ff00ff
+  );
+  background-size: 400%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    gradientMove 6s linear infinite,
+    float 4s ease-in-out infinite,
+    crazyGlow 1.5s infinite alternate,
+    tilt 5s infinite ease-in-out;
+}
+
+/* 🌈 Gradient w ruchu */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+/* 🪂 Unoszenie */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotateX(0deg); }
+  50% { transform: translateY(-25px) rotateX(10deg); }
+}
+
+/* 💥 Mega świecenie */
+@keyframes crazyGlow {
+  0% {
+    text-shadow:
+      0 0 10px #ff00ff,
+      0 0 20px #00ffff,
+      0 0 30px #00ff00,
+      0 0 40px #ffff00;
+  }
+  100% {
+    text-shadow:
+      0 0 20px #ff00ff,
+      0 0 40px #00ffff,
+      0 0 60px #00ff00,
+      0 0 80px #ffff00,
+      0 0 120px #ff0000;
+  }
+}
+
+/* 🌀 Delikatny tilt 3D */
+@keyframes tilt {
+  0%, 100% { transform: perspective(800px) rotateY(0deg); }
+  50% { transform: perspective(800px) rotateY(15deg); }
+}
