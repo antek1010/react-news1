@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./App.css";
 import { News } from "./components/news/news";
 import { ThemeContext } from "./context/Themecontext";
@@ -6,50 +6,35 @@ import { ThemeContext } from "./context/Themecontext";
 function App() {
   const name = "Antek";
   const { theme } = useContext(ThemeContext);
+  const [news, setNews] = useState([]);
 
-  const newsList = [
-    {
-      title: "Spotkanie w Monachium",
-      description:
-        "Odbyło się spotkanie światowych liderów w Monachium dotyczące bezpieczeństwa i współpracy międzynarodowej.",
-    },
-    {
-      title: "Nowa misja kosmiczna",
-      description:
-        "Europejska Agencja Kosmiczna ogłosiła start nowej misji badawczej na Marsa.",
-    },
-    {
-      title: "Rekord na giełdzie",
-      description:
-        "Warszawska giełda odnotowała najwyższy wzrost indeksu WIG w tym kwartale.",
-    },
-    {
-      title: "Przełom w medycynie",
-      description:
-        "Naukowcy opracowali nową metodę wczesnego wykrywania chorób serca.",
-    },
-    {
-      title: "Nowe technologie AI",
-      description:
-        "Powstał innowacyjny model sztucznej inteligencji wspierający edukację i analizę danych.",
-    },
-    {
-      title: "Zmiany klimatyczne",
-      description:
-        "Opublikowano raport wskazujący na przyspieszone tempo topnienia lodowców.",
-    },
-  ];
+  useEffect(() => {
+
+    const fetchNews = async () => {
+      const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=20");
+
+      if (!response.ok) {
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setNews(data);
+    }
+
+    fetchNews();
+  }, [])
 
   return (
     <div className={theme}>
       <h1 className="animated-title">HELLO {name}!</h1>
 
       <main>
-        {newsList.map((news, index) => (
+        {news.map((news, index) => (
           <News
             key={index}
             title={news.title}
-            description={news.description}
+            description={news.body}
           ></News>
         ))}
       </main>

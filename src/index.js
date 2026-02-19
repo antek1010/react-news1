@@ -6,22 +6,26 @@ import { Nav } from "./components/nav/nav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Users } from "./pages/users/users";
 import { NewsDetails } from "./pages/newsDetails/newsDetails";
-import { Dashboard } from "./pages/dashboard/dashborad";
 import { ThemeProvider } from "./context/Themecontext";
+import { Dashboard } from "./pages/dashboard/dashborad";
+import { Footer } from "./components/footer/footer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ThemeProvider>
+
       <BrowserRouter>
         <Nav />
         <Routes>
-          <Route path="/" element={<App/>}></Route>
-          <Route path="/dashboard" element={<Dashboard/>}></Route>
-          <Route path="/users" element={<Users/>}></Route>
-          <Route path="/news/:slug" element={<NewsDetails/>}></Route>
+          <Route path="/" element={<App />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/users" element={<Users />}></Route>
+          <Route path="/news/:slug" element={<NewsDetails />}></Route>
         </Routes>
-    </BrowserRouter>
+        <Footer/>      
+        </BrowserRouter>
+      
     </ThemeProvider>
   </React.StrictMode>,
 );
