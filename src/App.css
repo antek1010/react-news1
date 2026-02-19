@@ -90,3 +90,22 @@ main {
   gap: 1rem;
   
 }
+
+div.dark, div.light {
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 120px;
+}
+
+div.dark {
+    background-color: #0f1042;
+}
+
+
+div.light {
+      background-color: white;
+}
+
+div.light h3, div.light a, div.light button, div.light p {
+  color: black;
+}

@@ -1,45 +1,47 @@
+import { useContext } from "react";
 import "./App.css";
 import { News } from "./components/news/news";
+import { ThemeContext } from "./context/Themecontext";
 
 function App() {
   const name = "Antek";
+  const { theme } = useContext(ThemeContext);
 
- const newsList = [
+  const newsList = [
     {
-      title: "Spotkanie w Nigerri z Epsteinem",
+      title: "Spotkanie w Monachium",
       description:
         "Odbyło się spotkanie światowych liderów w Monachium dotyczące bezpieczeństwa i współpracy międzynarodowej.",
     },
     {
-      title: "Nowa misja Epsteina",
+      title: "Nowa misja kosmiczna",
       description:
-        "Europejska Agencja Kosmiczna ogłosiła start nowej misji badawczej na Marsa.66666666667777776667776",
+        "Europejska Agencja Kosmiczna ogłosiła start nowej misji badawczej na Marsa.",
     },
     {
-      title: "Rekord na giełdzie 67 coinów",
+      title: "Rekord na giełdzie",
       description:
-        "Warszawska giełda odnotowała najwyższy wzrost indeksu WIG w tym kwartale. donald trumango mango mango mango mango",
+        "Warszawska giełda odnotowała najwyższy wzrost indeksu WIG w tym kwartale.",
     },
     {
-      title: "Przełom w medycynie stworzony przez zakladniczke epsteina",
+      title: "Przełom w medycynie",
       description:
-        "Naukowcy opracowali nową metodę wczesnego wykrywania chorób serca. mango 6767676666666666666667767",
+        "Naukowcy opracowali nową metodę wczesnego wykrywania chorób serca.",
     },
     {
-      title: "Nowe technologie na wyspie Epsteina",
+      title: "Nowe technologie AI",
       description:
-        "Powstał innowacyjny model sztucznej inteligencji wspierający edukację i analizę danych.6666666666777777766677",
+        "Powstał innowacyjny model sztucznej inteligencji wspierający edukację i analizę danych.",
     },
     {
-      title: "Zmiany klimatyczne na wielkiej wyspie tego chorego czlowieka",
+      title: "Zmiany klimatyczne",
       description:
-        "Opublikowano raport wskazujący na przyspieszone tempo topnienia lodowców.666666666677777777677777766666666",
+        "Opublikowano raport wskazujący na przyspieszone tempo topnienia lodowców.",
     },
   ];
 
   return (
-    <>
-
+    <div className={theme}>
       <h1 className="animated-title">HELLO {name}!</h1>
 
       <main>
@@ -51,7 +53,7 @@ function App() {
           ></News>
         ))}
       </main>
-    </>
+    </div>
   );
 }
 
