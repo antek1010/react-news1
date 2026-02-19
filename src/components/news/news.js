@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./news.css";
 
 export function News({ title, description }) {
@@ -15,6 +15,15 @@ export function News({ title, description }) {
 
     setLikes(likes + value);
   }
+  
+
+useEffect(()=> {
+ if (likes > 0) {
+  document.tittle = '(${likes}) NOWY LIKE!'
+ }else{
+  document.tittle ="Mini Feed App!"
+ }
+}, [likes]);
 
   return (
     <div className="news">

@@ -36,3 +36,18 @@ span > i {
   font-size: 4rem;
   color: white;
 }
+ul > li, ul > li > a{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color:white
+}
+input{
+    border-radius: 20px;
+    background-color: rgb(111, 101, 85);
+    padding: 8px;
+    color: white;
+}
