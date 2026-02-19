@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./news.css";
+import { Link } from "react-router-dom";
 
 export function News({ title, description }) {
   const [likes, setLikes] = useState(0);
@@ -8,32 +9,36 @@ export function News({ title, description }) {
     alert(`${name}, kliknięto przycisk`);
   };
 
-  const changeLikes = (value) => {
+  const changeLikes = (value, e) => {
+    e.preventDefault();
+
     if (likes < 1 && value < 0) {
       return;
     }
 
     setLikes(likes + value);
-  }
-  
+  };
 
-useEffect(()=> {
- if (likes > 0) {
-  document.tittle = '(${likes}) NOWY LIKE!'
- }else{
-  document.tittle ="Mini Feed App!"
- }
-}, [likes]);
+  useEffect(() => {
+    if (likes > 0) {
+      document.title = `(${likes}) NOWY LIKE!`;
+    } else {
+      document.title = "Mini Feed App!";
+    }
+  }, [likes]);
+  const createSlug = (title) => {
+    return title.replace(/\s/g, "-");
+  }
 
   return (
-    <div className="news">
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <span>
-        { likes }
-      </span>
-      <button onClick={() => changeLikes(1)}>LIKE</button>
-      <button onClick={() => changeLikes(-1)}>DISLIKE </button>
+    <div>
+      <Link className="news" to={`/news/${createSlug(title)}`}>
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <span>{likes}</span>
+        <button onClick={(e) => changeLikes(1, e)}>LIKE</button>
+        <button onClick={(e) => changeLikes(-1, e)}>DISLIKE </button>
+      </Link>
     </div>
   );
 }
